@@ -1,4 +1,5 @@
 import axios from 'axios'
 
 axios.defaults.withCredentials = true
-axios.defaults.baseURL = 'https://laravel-collections.test'
+axios.defaults.withXSRFToken = true
+axios.defaults.baseURL = import.meta.env.VITE_API_URL
