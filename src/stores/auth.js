@@ -17,5 +17,21 @@ export const useAuthStore = defineStore('auth', {
       const data = await axios.get('/api/user')
       this.authUser = data.data
     },
+    async handleLogin(data) {
+      this.authErrors = []
+      await this.getToken()
+
+      try {
+        await axios.post('/login', {
+          email: data.email,
+          password: data.password,
+        })
+        this.router.push('/')
+      } catch (error) {
+        if (error.response.status === 422) {
+          this.authErrors = error.response.data.errors
+        }
+      }
+    },
   },
 })

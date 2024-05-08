@@ -1,28 +1,12 @@
 <script setup>
 import { ref } from 'vue'
-import axios from 'axios'
-import { useRouter } from 'vue-router'
+import { useAuthStore } from '../stores/auth'
 
-const router = useRouter()
+const authStore = useAuthStore()
 const form = ref({
   email: '',
   password: '',
 })
-
-const getToken = async () => {
-  await axios.get('/sanctum/csrf-cookie')
-}
-
-const handleLogin = async () => {
-  await getToken()
-
-  await axios.post('/login', {
-    email: form.value.email,
-    password: form.value.password,
-  })
-
-  router.push('/')
-}
 </script>
 <template>
   <section class="bg-[#F4F7FF] py-20 lg:py-[120px]">
@@ -33,7 +17,7 @@ const handleLogin = async () => {
             class="relative mx-auto max-w-[525px] overflow-hidden rounded-lg bg-white py-16 px-10 text-center sm:px-12 md:px-[60px]"
           >
             <div class="mb-10 text-center md:mb-16">Vue-LaraBreeze API</div>
-            <form @submit.prevent="handleLogin(form)">
+            <form @submit.prevent="authStore.handleLogin(form)">
               <div class="mb-6">
                 <input
                   type="email"
