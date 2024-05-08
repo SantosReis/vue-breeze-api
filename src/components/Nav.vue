@@ -9,9 +9,7 @@ const authStore = useAuthStore()
       class="container mx-auto flex flex-wrap items-center justify-between"
       bis_skin_checked="1"
     >
-      <a href="https://laraveller.com/" class="flex items-center">
-        Laraveller
-      </a>
+      <a href="#" class="flex items-center"> Vue-LaraBreeze API </a>
       <button
         data-collapse-toggle="navbar-default"
         type="button"
