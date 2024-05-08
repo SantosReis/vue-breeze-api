@@ -20,18 +20,21 @@ export const useAuthStore = defineStore('auth', {
     async handleLogin(data) {
       this.authErrors = []
       await this.getToken()
-
-      try {
-        await axios.post('/login', {
-          email: data.email,
-          password: data.password,
-        })
-        this.router.push('/')
-      } catch (error) {
-        if (error.response.status === 422) {
-          this.authErrors = error.response.data.errors
-        }
-      }
+      await axios.post('/login', {
+        email: data.email,
+        password: data.password,
+      })
+      this.router.push('/')
+    },
+    async handleRegister(data) {
+      await this.getToken()
+      await axios.post('/register', {
+        name: data.name,
+        email: data.email,
+        password: data.password,
+        password_confirmation: data.password_confirmation,
+      })
+      this.router.push('/')
     },
   },
 })
