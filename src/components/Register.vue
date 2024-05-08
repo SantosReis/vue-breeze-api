@@ -20,7 +20,7 @@ const form = ref({
           <div
             class="relative mx-auto max-w-[525px] overflow-hidden rounded-lg bg-white py-16 px-10 text-center sm:px-12 md:px-[60px]"
           >
-            <div class="mb-10 text-center md:mb-16">Laraveller</div>
+            <div class="mb-10 text-center md:mb-16">Vue-LaraBreeze API</div>
             <form @submit.prevent="authStore.handleRegister(form)">
               <div class="mb-6">
                 <input
@@ -29,8 +29,10 @@ const form = ref({
                   v-model="form.name"
                   class="bordder-[#E9EDF4] w-full rounded-md border bg-[#FCFDFE] py-3 px-5 text-base text-body-color placeholder-[#ACB6BE] outline-none focus:border-primary focus-visible:shadow-none"
                 />
-                <div v-if="true" class="flex">
-                  <span class="text-red-400 text-sm m-2 p-2">error</span>
+                <div v-if="authStore.errors.name" class="flex">
+                  <span class="text-red-400 text-sm m-2 p-2">{{
+                    authStore.errors.name[0]
+                  }}</span>
                 </div>
               </div>
               <div class="mb-6">
@@ -40,8 +42,10 @@ const form = ref({
                   v-model="form.email"
                   class="bordder-[#E9EDF4] w-full rounded-md border bg-[#FCFDFE] py-3 px-5 text-base text-body-color placeholder-[#ACB6BE] outline-none focus:border-primary focus-visible:shadow-none"
                 />
-                <div v-if="true" class="flex">
-                  <span class="text-red-400 text-sm m-2 p-2">error</span>
+                <div v-if="authStore.errors.email" class="flex">
+                  <span class="text-red-400 text-sm m-2 p-2">{{
+                    authStore.errors.email[0]
+                  }}</span>
                 </div>
               </div>
               <div class="mb-6">
@@ -51,8 +55,10 @@ const form = ref({
                   v-model="form.password"
                   class="bordder-[#E9EDF4] w-full rounded-md border bg-[#FCFDFE] py-3 px-5 text-base text-body-color placeholder-[#ACB6BE] outline-none focus:border-primary focus-visible:shadow-none"
                 />
-                <div v-if="true" class="flex">
-                  <span class="text-red-400 text-sm m-2 p-2">error</span>
+                <div v-if="authStore.errors.password" class="flex">
+                  <span class="text-red-400 text-sm m-2 p-2">{{
+                    authStore.errors.password[0]
+                  }}</span>
                 </div>
               </div>
               <div class="mb-6">
